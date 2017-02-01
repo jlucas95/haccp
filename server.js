@@ -1,34 +1,33 @@
 const express = require('express');
-const mongodb = require('mongodb');
-const co = require('co');
+const data = require('./data-layer');
 
-var db = null;
 
-co(function(){
-  var client = mongodb.connect("mongodb://localhost:27017/forms", "", function(err, database){
-    db = database;
-    /*
-    var op = db.collection("forms").insertOne({"w": 15, "y": 2017},{}, function(err, res){
-      console.log(err);
-      console.log(res);
-      db.close();
-    });*/
-  });
-
-});
 
 process.on("SIGINT", function(code){
   console.error("closing database connection");
-  db.collection("forms").insertOne({"w": 15, "y": 2017}, {}, function(err, res){
-    console.log(err);
-    console.log(res);
-    db.close();
-    process.exit();
-  });
+  db.close();
+  process.exit();
 
 });
 
 
 var app = express();
 app.use(express.static("public"));
+app.get("/forms/:year", function(req, res){
+  var year = Number(req.params.year);
+  if(typeof(year) == "number"){
+    console.log('getting forms');
+    data.getForms(year, function (documents){
+      console.log('sending data');
+      res.send(documents);
+    });
+  }
+  else{
+    console.log("incorrect request");
+    res.sendStatus(400);
+  }
+});
+app.get("/suppliers", function(req, res){
+  res.send(["DeliXL","Daily Fresh","Becker-Rooyen"])
+})
 app.listen(8080);

@@ -1,0 +1,65 @@
+<h1>Add screen</h1> {{suppliers}}
+<form>
+    <h1>Leveranciers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Naam</th>
+                <th>Datum</th>
+                <th>Product</th>
+                <th>Temperatuur</th>
+                <th>verpakking</th>
+                <th>THT-datum</th>
+                <th>genomen actie bij afwijking</th>
+            </tr>
+            </th>
+            <tbody>
+
+                <tr ng-repeat="supplier in suppliers">
+                    <td>
+                        <label type="text" ng-model="supplier.name">{{supplier.name}}</label
+        </td>
+        <td>
+          <input type="date" ng-model="supplier.date" />
+        </td>
+        <td>
+          <input type="text" ng-model="supplier.product"/>
+        </td>
+        <td>
+          <input type="number" ng-model="supplier.temp"/>
+        </td>
+        <td>
+          <input type="radio" ng-model="supplier.packaging" name="{{supplier.name}}.verpakking" value="goed">goed</input><br />
+          <input type="radio" ng-model="supplier.packaging" name="{{supplier.name}}.verpakking" value="afwijkend">afwijkend</input>
+        </td>
+        <td>
+          <input type="radio" ng-model="supplier.THT" name="{{supplier.name}}.THT" value="goed">goed</input><br />
+          <input type="radio" ng-model="supplier.THT" name="{{supplier.name}}.THT" value="afwijkend">afwijkend</input>
+        </td>
+        <td>
+          <input type="text" ng-model="supplier.action"/>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Opslag</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Naam</th>
+          <th>Datum</th>
+          <th>Temperatuur</th>
+          <th>Afgedekt?</th>
+          <th>Fifo?</th>
+          <th>Atie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+</form>
