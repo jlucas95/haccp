@@ -1,64 +1,68 @@
-<h1>Add screen</h1> {{suppliers}}
 <form>
+  <<h1 style="display: inline;">HACCP Registratie</h1>
+  <label class="label label-default">Jaar</label>
+  <input ng-model="year" type="number"/>
+  <label class="label label-default">Week</label>
+  <input ng-model="week" type="number"/>
     <h1>Leveranciers</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Naam</th>
-                <th>Datum</th>
-                <th>Product</th>
-                <th>Temperatuur</th>
-                <th>verpakking</th>
-                <th>THT-datum</th>
-                <th>genomen actie bij afwijking</th>
-            </tr>
-            </th>
-            <tbody>
+    <ul class="list-group">
+      <li class="row list-group-item">
+          <div class="col-sm-1">Naam </div>
+          <div class="col-sm-1">Datum </div>
+          <div class="col-sm-2">Product </div>
+          <div class="col-sm-1">Temperatuur </div>
+          <div class="col-sm-1">verpakking </div>
+          <div class="col-sm-1">THT-datum </div>
+          <div class="col-sm-3">genomen actie bij afwijking</div>
+      </li>
+      <li class="row list-group-item" ng-repeat="supplier in suppliers">
+          <div class="col-sm-1">{{supplier.name}} </div>
 
-                <tr ng-repeat="supplier in suppliers">
-                    <td>
-                        <label type="text" ng-model="supplier.name">{{supplier.name}}</label
-        </td>
-        <td>
-          <input type="date" ng-model="supplier.date" />
-        </td>
-        <td>
-          <input type="text" ng-model="supplier.product"/>
-        </td>
-        <td>
-          <input type="number" ng-model="supplier.temp"/>
-        </td>
-        <td>
-          <input type="radio" ng-model="supplier.packaging" name="{{supplier.name}}.verpakking" value="goed">goed</input><br />
-          <input type="radio" ng-model="supplier.packaging" name="{{supplier.name}}.verpakking" value="afwijkend">afwijkend</input>
-        </td>
-        <td>
-          <input type="radio" ng-model="supplier.THT" name="{{supplier.name}}.THT" value="goed">goed</input><br />
-          <input type="radio" ng-model="supplier.THT" name="{{supplier.name}}.THT" value="afwijkend">afwijkend</input>
-        </td>
-        <td>
-          <input type="text" ng-model="supplier.action"/>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h1>Opslag</h1>
+            <input class="col-sm-1 input-sm" type="date" ng-model="supplier.date"  />
+            <input class="col-sm-2 input-sm" type="text" ng-model="supplier.product" />
+            <input type="number" ng-model="supplier.temp" class="col-sm-1 input-sm"/>
+          <div class="col-sm-1"><input type="radio" ng-model="supplier.covered" name="{{supplier.name}}.verpakking" value="goed">goed</input><br />
+              <input type="radio" ng-model="supplier.packaging" name="{{supplier.name}}.verpakking" value="afwijkend">afwijkend</input>
+          </div>
+          <div class="col-sm-1"><input type="radio" ng-model="supplier.THT" name="{{supplier.name}}.THT" value="goed">goed</input><br />
+              <input type="radio" ng-model="supplier.THT" name="{{supplier.name}}.THT" value="afwijkend">afwijkend</input>
+          </div>
+          <input type="text" ng-model="supplier.action" class="col-sm-3"/>
+      </li>
+    </ul>
+
+
+    <h1>Opslag</h1>
+    <ul class="list-group">
+      <li class="row list-group-item">
+          <div class="col-sm-2">Naam</div>
+          <div class="col-sm-1">Datum</div>
+          <div class="col-sm-1">Temperatuur</div>
+          <div class="col-sm-1">Afgedekt?</div>
+          <div class="col-sm-1">Fifo?</div>
+          <div class="col-sm-3">Actie</div>
+      </li>
+      <li class="list-group-item row" ng-repeat="storage in storages">
+        <div class="col-sm-2"><label>{{storage.name}}</label></div>
+        <input class="col-sm-1 input-sm" ng-model="storage.date" type="date" />
+        <input class="col-sm-1 input-sm" ng-model="storage.temp" type="number" />
+        <input class="col-sm-1" ng-model="storage.packaged" type="checkbox" />
+        <input class="col-sm-1" ng-model="storage.fifo" type="checkbox" />
+        <input class="col-sm-2 input-sm" ng-model="storage.action" type="text" />
+      </li>
+    </ul>
     <table>
-      <thead>
-        <tr>
-          <th>Naam</th>
-          <th>Datum</th>
-          <th>Temperatuur</th>
-          <th>Afgedekt?</th>
-          <th>Fifo?</th>
-          <th>Atie</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-        </tr>
-      </tbody>
+        <tbody>
+            <tr >
+
+                <td> </td>
+                <td>   </td>
+                <td>     </td>
+                <td>     </td>
+                <td>   </td>
+            </tr>
+
+        </tbody>
 
     </table>
 
